@@ -11,14 +11,11 @@
   
     <style>
         .modal-backdrop {
-            background-color: rgba(0, 0, 0, 0.1);
-            !important
+            background-color: rgba(0, 0, 0, 0.1) !important;
         }
-
-            .modal-backdrop + div {
-                overflow: auto;
-            }
-
+        .modal-backdrop + div {
+            overflow: auto;
+        }
         .modal-body, .content {
             padding: 0;
         }
@@ -28,18 +25,17 @@
     <button type="button" class="btn btn-primary hidden" data-toggle="modal" id="modalButton"
         data-target="#modalShow" data-backdrop="static" data-keyboard="false"></button>
     <div class="content">
-        <section class="common-box ">
+        <section class="common-box">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="row">
-                            <div class="modal fade product-list-popup" id="modalShow" tabindex="-1" role="dialog"
-                                 aria-hidden="false">
+                            <div class="modal fade product-list-popup" id="modalShow" tabindex="-1" role="dialog" aria-hidden="false">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <div class="content">
-                                                <section class="common-box ">
+                                                <section class="common-box">
                                                     <div class="container">
                                                         <div class="section-title center-align">
                                                             <h2>Welcome to Enigma Private Server</h2>
@@ -52,37 +48,35 @@
 
                                                         <div class="row div-content-center">
                                                             <div class="col-md-12 col-sm-12 text-center">
-                                                                <a href="/player/login" class="grow-login btn btn-block" id="login-link">Enigma Login</a>
+                                                                <a href="#" class="grow-login btn btn-block" id="login-link">Enigma Login</a>
                                                             </div>
                                                         </div>
                                                         <div class="row div-content-center" style="margin-top:20px;">
                                                             <div class="col-md-12 col-sm-12 text-center">
-                                                                <a href="/player/register" class="grow-login btn btn-block text-center" id="register-link"><p style="margin: 0; color:white; margin-left: -8px;">Enigma Register</p></a>
+                                                                <a href="#" class="grow-login btn btn-block text-center" id="register-link">
+                                                                    <p style="margin: 0; color:white; margin-left: -8px;">Enigma Register</p>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </section>
                                             </div>
                                             <script type="text/javascript">
-                                                // Function to generate a unique token
                                                 function generateToken() {
                                                     var timestamp = new Date().getTime();
                                                     var randomValue = Math.random().toString(36).substring(2);
                                                     return timestamp + randomValue;
                                                 }
 
-                                                // Function to store the token in local storage
-                                                function storeToken(token) {
-                                                    localStorage.setItem('enigmaToken', token);
-                                                }
+                                                document.getElementById('login-link').addEventListener('click', function() {
+                                                    var token = generateToken();
+                                                    window.location.href = 'https://quantumps.xyz/player/login?token=' + token;
+                                                });
 
-                                                // Generate and store token
-                                                var token = generateToken();
-                                                storeToken(token);
-
-                                                // Update login and register links with token
-                                                document.getElementById('login-link').href += '?token=' + token;
-                                                document.getElementById('register-link').href += '?token=' + token;
+                                                document.getElementById('register-link').addEventListener('click', function() {
+                                                    var token = generateToken();
+                                                    window.location.href = 'https://quantumps.xyz/player/register?token=' + token;
+                                                });
                                             </script>
                                         </div>
                                     </div>
@@ -94,32 +88,13 @@
             </div>
         </section>
     </div>
-
 </body>
 <script src="https://quantumps.xyz/js/jquery-2.1.4.min.js"></script>
 <script src="https://quantumps.xyz/js/bootstrap.min.js"></script>
 <script>
     $('document').ready(function () {
         document.onkeydown = (e) => {
-            if (e.key == 123) {
-                e.preventDefault();
-            }
-            if (e.key == 'F12') {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.shiftKey && e.key == 'I') {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.key == 'I') {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.shiftKey && e.key == 'C') {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.shiftKey && e.key == 'J') {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.key == 'U') {
+            if (e.key == 123 || e.key == 'F12' || (e.ctrlKey && (e.shiftKey && (e.key == 'I' || e.key == 'C' || e.key == 'J')) || e.key == 'U')) {
                 e.preventDefault();
             }
         };
