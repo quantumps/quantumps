@@ -11,14 +11,11 @@
     
     <style>
         .modal-backdrop {
-            background-color: rgba(0, 0, 0, 0.1);
-            !important
+            background-color: rgba(0, 0, 0, 0.1) !important;
         }
-
-            .modal-backdrop + div {
-                overflow: auto;
-            }
-
+        .modal-backdrop + div {
+            overflow: auto;
+        }
         .modal-body, .content {
             padding: 0;
         }
@@ -28,7 +25,7 @@
         <button type="button" class="btn btn-primary hidden" data-toggle="modal" id="modalButton" data-target="#modalShow"
             data-backdrop="static" data-keyboard="false"></button>
     <div class="content">
-        <section class="common-box ">
+        <section class="common-box">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
@@ -39,7 +36,7 @@
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <div class="content">
-                                                <section class="common-box ">
+                                                <section class="common-box">
                                                     <div class="container">
                                                         <div class="section-title center-align">
                                                             <h2>Log in with your Enigma Account</h2>
@@ -96,25 +93,7 @@
 <script>
     $('document').ready(function () {
         document.onkeydown = (e) => {
-            if (e.key == 123) {
-                e.preventDefault();
-            }
-            if (e.key == 'F12') {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.shiftKey && e.key == 'I') {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.key == 'I') {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.shiftKey && e.key == 'C') {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.shiftKey && e.key == 'J') {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.key == 'U') {
+            if (e.key == 123 || e.key == 'F12' || (e.ctrlKey && (e.shiftKey && (e.key == 'I' || e.key == 'C' || e.key == 'J')) || e.key == 'U')) {
                 e.preventDefault();
             }
         };
@@ -148,6 +127,8 @@
         const token = urlParams.get('token');
         if (token) {
             document.getElementById('token').value = token;
+            // Trigger the modal automatically
+            $('#modalButton').trigger('click');
         }
     });
 </script>
