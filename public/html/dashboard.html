@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" style="background-color: rgba(0,0,0,0.0); width:100%; height: 100%;">
 <head>
@@ -26,8 +25,8 @@
     </style>
 </head>
 <body style="background-color: rgba(0,0,0,0.0);">
-        <button type="button" class="btn btn-primary hidden" data-toggle="modal" id="modalButton"
-            data-target="#modalShow" data-backdrop="static" data-keyboard="false"></button>
+    <button type="button" class="btn btn-primary hidden" data-toggle="modal" id="modalButton"
+        data-target="#modalShow" data-backdrop="static" data-keyboard="false"></button>
     <div class="content">
         <section class="common-box ">
             <div class="container">
@@ -53,24 +52,37 @@
 
                                                         <div class="row div-content-center">
                                                             <div class="col-md-12 col-sm-12 text-center">
-                                                                <a href="/player/login?token=74GhauoBA3q9wFxbVQZKwBg9KJXJGOZ637g7Tcf2fGMDQpO575lSDevgnmHLBPruguD9yooa18aNtRODWCyxLmT3GOpLqyNB7Ga28GC4fmizmsQCOhfK2z8ErEcwt3ywToKrkqG91BsCNCWgCW3qvOewuEzrAMcIJQX7aheB0a3LXHkLP8O59yybSX209J7wRwx4vAfXI6isggUkwnPaJPEb2iaRCy1muBAifTly5dH29UEQ6Elr7n6zJNLW4O" class="grow-login btn btn-block">Enigma Login</a>
+                                                                <a href="/player/login" class="grow-login btn btn-block" id="login-link">Enigma Login</a>
                                                             </div>
                                                         </div>
                                                         <div class="row div-content-center" style="margin-top:20px;">
                                                             <div class="col-md-12 col-sm-12 text-center">
-                                                                <a href="/player/register?token=74GhauoBA3q9wFxbVQZKwBg9KJXJGOZ637g7Tcf2fGMDQpO575lSDevgnmHLBPruguD9yooa18aNtRODWCyxLmT3GOpLqyNB7Ga28GC4fmizmsQCOhfK2z8ErEcwt3ywToKrkqG91BsCNCWgCW3qvOewuEzrAMcIJQX7aheB0a3LXHkLP8O59yybSX209J7wRwx4vAfXI6isggUkwnPaJPEb2iaRCy1muBAifTly5dH29UEQ6Elr7n6zJNLW4O" class="grow-login btn btn-block text-center"><p style="margin: 0; color:white; margin-left: -8px;">Enigma Register</p></a>
+                                                                <a href="/player/register" class="grow-login btn btn-block text-center" id="register-link"><p style="margin: 0; color:white; margin-left: -8px;">Enigma Register</p></a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </section>
                                             </div>
                                             <script type="text/javascript">
-                                                function nativeAndroidSignIn(token) {
-                                                    NativeApp.nativeSignIn(token);
+                                                // Function to generate a unique token
+                                                function generateToken() {
+                                                    var timestamp = new Date().getTime();
+                                                    var randomValue = Math.random().toString(36).substring(2);
+                                                    return timestamp + randomValue;
                                                 }
-                                                function nativeiOSSignIn(token) {
-                                                    window.webkit.messageHandlers.nativeSignIn.postMessage(token);
+
+                                                // Function to store the token in local storage
+                                                function storeToken(token) {
+                                                    localStorage.setItem('enigmaToken', token);
                                                 }
+
+                                                // Generate and store token
+                                                var token = generateToken();
+                                                storeToken(token);
+
+                                                // Update login and register links with token
+                                                document.getElementById('login-link').href += '?token=' + token;
+                                                document.getElementById('register-link').href += '?token=' + token;
                                             </script>
                                         </div>
                                     </div>
